@@ -1,0 +1,41 @@
+use app.text
+
+fn test_slugify() {
+    assert_eq(text.slugify("Hello, World!"), "hello-world")
+    assert_eq(text.slugify("  Elomar   Lang 2026  "), "elomar-lang-2026")
+    assert_eq(text.slugify("مرحبا بالعالم"), "مرحبا-بالعالم")
+    assert_eq(text.slugify("--a--"), "a")
+    assert_eq(text.slugify("!!!"), "")
+}
+
+fn test_cases() {
+    assert_eq(text.capitalize("hello"), "Hello")
+    assert_eq(text.capitalize(""), "")
+    assert_eq(text.title_case("the old man"), "The Old Man")
+    assert_eq(text.camel_case("first-name_here"), "firstNameHere")
+    assert_eq(text.camel_case("  User ID "), "userId")
+    assert_eq(text.snake_case("Hello World"), "hello_world")
+}
+
+fn test_truncate() {
+    assert_eq(text.truncate("short", 10), "short")
+    assert_eq(text.truncate("a long sentence", 7), "a long…")
+    assert_eq(text.truncate("abc", 1), "…")
+    assert_eq(text.truncate("abc", 0), "")
+}
+
+fn test_wrap() {
+    assert_eq(
+        text.wrap("the quick brown fox jumps over", 10),
+        ["the quick", "brown fox", "jumps over"]
+    )
+    assert_eq(text.wrap("supercalifragilistic is long", 5), ["supercalifragilistic", "is", "long"])
+    let empty: List<String> = []
+    assert_eq(text.wrap("   ", 5), empty)
+}
+
+fn test_counting() {
+    assert(text.is_blank("  \t "))
+    assert(!text.is_blank(" x "))
+    assert_eq(text.count_words("one  two\nthree"), 3)
+}

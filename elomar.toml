@@ -1,0 +1,5 @@
+[package]
+name = "textkit"
+version = "0.1.0"
+description = "Everyday helpers for text: slugs, title case, camelCase and snake_case, truncating and word wrapping."
+license = "MIT OR Apache-2.0"
